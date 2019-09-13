@@ -95,7 +95,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 448}
   m_MaxSize: {x: 22012, y: 10024}
   vertical: 0
-  controlID: 132
+  controlID: 111
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 448}
   m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
-  controlID: 51
+  controlID: 93
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -638,7 +638,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: f8f5ffff0cf9ffff10f9ffff2af9ffff3af9ffffdcf9ffffe0f9ffffe4f9ffffe8f9ffffecf9fffff0f9fffff4f9fffff8f9ffff42faffff44faffff48faffff88faffff8cfaffff9afaffffc6faffffccfafffff0fafffff4fafffff8fafffffefaffff04fbffff0efbffff12fbffff2afbffff30fbffff36fbffff3cfbffff44fbffff58fbffff5efbffff64fbffff7cfbffff86fbffff8cfbffff94fbffff98fbffff9cfbffffa0fbffffa4fbffffa8fbffffacfbffffb0fbffffb4fbffffd2fbffffd6fbffff
+      m_ExpandedIDs: d0f3ffffd6fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -735,20 +735,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Models
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/Models
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\0ju20\GAME312\Bobblehead Wars
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20260000
-    m_LastClickedID: 9760
-    m_ExpandedIDs: 00000000202600008c280000da28000000ca9a3b
+    m_SelectedIDs: 8c280000
+    m_LastClickedID: 10380
+    m_ExpandedIDs: 00000000202600008c28000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -943,9 +943,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.0174046, y: 5.9697695, z: 1.6733284}
+    m_Target: {x: 3.4694118, y: 11.065466, z: 7.926303}
     speed: 2
-    m_Value: {x: -7.0174046, y: 5.9697695, z: 1.6733284}
+    m_Value: {x: 3.4694118, y: 11.065466, z: 7.926303}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -973,13 +973,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.002306491, y: 0.95150965, z: -0.007136486, w: 0.3075273}
+    m_Target: {x: -0.1960066, y: 0.7173279, z: -0.2230751, w: -0.6302854}
     speed: 2
-    m_Value: {x: 0.0023064911, y: 0.9515098, z: -0.007136487, w: 0.30752733}
+    m_Value: {x: -0.1960066, y: 0.7173279, z: -0.2230751, w: -0.6302854}
   m_Size:
-    m_Target: 6.9672937
+    m_Target: 24.557877
     speed: 2
-    m_Value: 6.9672937
+    m_Value: 24.557877
   m_Ortho:
     m_Target: 0
     speed: 2
