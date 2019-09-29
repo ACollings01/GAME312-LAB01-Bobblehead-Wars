@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &5302404763669728045
+--- !u!95 &560863859
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -10,7 +10,7 @@ Animator:
   m_GameObject: {fileID: 3373083516314799552}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a48e5dfc92ef7b4da78d418a95d5a34, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4e4a7c27993de3499f013b071fa817f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -175,8 +175,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9500000, guid: 7df968ec880694920bcb46964b9d62a4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df968ec880694920bcb46964b9d62a4, type: 3}
 --- !u!4 &3373083515848192345 stripped
 Transform:
