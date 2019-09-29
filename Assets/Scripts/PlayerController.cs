@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 50.0f;
     private CharacterController characterController;
 
+    public Animator bodyAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,22 +29,30 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Sets the direction of movement to that which is input using WASD or the arrow keys
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),
                                             0,
                                             Input.GetAxis("Vertical"));
         if (moveDirection == Vector3.zero)
         {
-            // TODO
+            // Boolean to control walking/idle animation
+            bodyAnimator.SetBool("IsMoving", false);
         }
         else
         {
+            // Boolean to control walking/idle animation
+            bodyAnimator.SetBool("IsMoving", true);
+
+            // This makes the marine's head bobble
             head.AddForce(transform.right * 150, ForceMode.Acceleration);
         }
 
+        // Creates a ray from the mouse pointer on the screen to the floor of the arena
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);   // Shows the ray in green in the scene view
 
+        // Sets the rotation of the marine so that it points to the mouse pointer's ray where it intersects the floor of the arena
         if (Physics.Raycast(ray, out hit, 1000, layerMask, QueryTriggerInteraction.Ignore))
         {
             if (hit.point != currentLookTarget)
