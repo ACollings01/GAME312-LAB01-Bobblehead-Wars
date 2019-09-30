@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
     public Animator bodyAnimator;
 
+    // Used in removing marine's bobblehead when killed
+    public Rigidbody marineBody;
+    private bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,12 +110,30 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    // death TODO
+                    Die();
                 }
                 isHit = true;   // Will be used to give the play iFrames
                 SoundManager.Instance.PlayOneShot(SoundManager.Instance.hurt);  // Plays the hurst sound
             }
             alien.Die();    // Kills the alien after it hits the player.
         }
+    }
+
+    public void Die()
+    {
+        // Removes the marines body from its head, sets its physics settings properly and stops the marine from moving.
+        bodyAnimator.SetBool("IsMoving", false);
+        marineBody.transform.parent = null;
+        marineBody.isKinematic = false;
+        marineBody.useGravity = true;
+        marineBody.gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        marineBody.gameObject.GetComponent<Gun>().enabled = false;
+
+        // Destroys the hinge connecting the head to the body and removes the parent from the head component.
+        Destroy(head.gameObject.GetComponent<HingeJoint>());
+        head.transform.parent = null;
+        head.useGravity = true;
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.marineDeath);
+        Destroy(gameObject);
     }
 }
