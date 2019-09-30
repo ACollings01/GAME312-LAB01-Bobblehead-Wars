@@ -18,16 +18,47 @@ public class GameManager : MonoBehaviour
     private float generatedSpawnTime = 0;   // Tracks time between spawn events
     private float currentSpawnTime = 0;     // Holds time since last spawn
 
+    public GameObject upgradePrefab;        // Holds the prefab for the upgrades
+    public Gun gun;
+    public float upgradeMaxTimeSpawn = 7.5f;
+
+    private bool spawnedUpgrade = false;
+    private float actualUpgradeTime = 0;
+    private float currentUpgradeTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        actualUpgradeTime = Random.Range(upgradeMaxTimeSpawn - 3.0f,
+                                            upgradeMaxTimeSpawn);
+        actualUpgradeTime = Mathf.Abs(actualUpgradeTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentSpawnTime += Time.deltaTime; // Updates the current spawn time each frame
+        currentUpgradeTime += Time.deltaTime;   // Updates the current upgrade time with the time passed each frame
+
+        if (currentUpgradeTime > actualUpgradeTime)
+        {
+            if (!spawnedUpgrade)
+            {
+                // Generates a random spawn location of all the spawns
+                int randomNumber = Random.Range(0, spawnPoints.Length - 1);
+                GameObject spawnLocation = spawnPoints[randomNumber];
+
+                // Creates the upgrade object in that location
+                GameObject upgrade = Instantiate(upgradePrefab) as GameObject;
+                Upgrade upgradeScript = upgrade.GetComponent<Upgrade>();
+                upgradeScript.gun = gun;
+                upgrade.transform.position = spawnLocation.transform.position;
+
+                // Lets the game know there is an upgrade created
+                spawnedUpgrade = true;
+            }
+        }
+
+        currentSpawnTime += Time.deltaTime; // Updates the current spawn time with the time passed each frame
 
         if (currentSpawnTime > generatedSpawnTime)  // Resets the counter and generates a new random interval for the next spawn
         {

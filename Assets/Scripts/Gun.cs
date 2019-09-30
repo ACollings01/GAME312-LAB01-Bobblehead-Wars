@@ -9,12 +9,48 @@ public class Gun : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public bool isUpgraded;
+    public float upgradeTime = 10.0f;
+    private float currentTime;
+
     void fireBullet()
+    {
+        Rigidbody bullet = createBullet();                  // Creates a bullet
+        bullet.velocity = transform.parent.forward * 100;   // Sets the velocity of the bullet
+
+        // Creates additional bullets if the gun is upgraded
+        if (isUpgraded)
+        {
+            Rigidbody bullet2 = createBullet();
+            bullet2.velocity = (transform.right + transform.forward / 0.5f) * 100;
+            Rigidbody bullet3 = createBullet();
+            bullet3.velocity =
+            ((transform.right * -1) + transform.forward / 0.5f) * 100;
+        }
+
+        // Plays the appropriate sound depending on whether the gun is upgraded
+        if (isUpgraded)
+        {
+            audioSource.PlayOneShot(SoundManager.Instance.upgradedGunFire);
+        }
+        else
+        {
+            audioSource.PlayOneShot(SoundManager.Instance.gunFire);
+        }
+    }
+
+    private Rigidbody createBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab) as GameObject;
         bullet.transform.position = launchPosition.position;
-        bullet.GetComponent<Rigidbody>().velocity = transform.parent.forward * 100;
-        audioSource.PlayOneShot(SoundManager.Instance.gunFire);
+        return bullet.GetComponent<Rigidbody>();
+    }
+    
+    // Called when gun is upgraded, sets isUpgraded and sets the current time to 0
+    public void UpgradeGun()
+    {
+        isUpgraded = true;
+        currentTime = 0;
     }
 
     // Start is called before the first frame update
@@ -37,6 +73,13 @@ public class Gun : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             CancelInvoke("fireBullet");
+        }
+
+        // Disables the update after a certain amount of time
+        currentTime += Time.deltaTime;
+        if (currentTime > upgradeTime && isUpgraded == true)
+        {
+            isUpgraded = false;
         }
     }
 }
