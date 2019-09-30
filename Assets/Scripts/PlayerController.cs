@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float[] hitForce;    // Used in determining camera shake intensity
+
+    // Used in giving the player i-frames when hit
+    public float timeBetweenHits = 2.5f;
+    private bool isHit = false;
+    private float timeSinceHit = 0;
+    private int hitNumber = -1;
+
     public LayerMask layerMask;
     private Vector3 currentLookTarget = Vector3.zero;
     public Rigidbody head;
@@ -25,6 +33,17 @@ public class PlayerController : MonoBehaviour
                                             0,
                                             Input.GetAxis("Vertical"));
         characterController.SimpleMove(moveDirection * moveSpeed);
+
+        // Reset iFrames after a short time
+        if (isHit)
+        {
+            timeSinceHit += Time.deltaTime;
+            if (timeSinceHit > timeBetweenHits)
+            {
+                isHit = false;
+                timeSinceHit = 0;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -67,6 +86,32 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation,
                                                     rotation,
                                                     Time.deltaTime * 10.0f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // If an existing alien hits the player, increment hitNumber and shake the camera accordingly, or kill the player if necessary
+        Alien alien = other.gameObject.GetComponent<Alien>();
+        if (alien != null)
+        {
+            if (!isHit)
+            {
+                hitNumber += 1;
+                CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+                if (hitNumber < hitForce.Length)
+                {
+                    cameraShake.intensity = hitForce[hitNumber];
+                    cameraShake.Shake();
+                }
+                else
+                {
+                    // death TODO
+                }
+                isHit = true;   // Will be used to give the play iFrames
+                SoundManager.Instance.PlayOneShot(SoundManager.Instance.hurt);  // Plays the hurst sound
+            }
+            alien.Die();    // Kills the alien after it hits the player.
         }
     }
 }
