@@ -118,6 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732567b7b528474428f2de87bbbc68ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   target: {fileID: 0}
   navigationUpdate: 0.5
 --- !u!1001 &3373083515848321997
